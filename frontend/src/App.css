@@ -1,0 +1,91 @@
+/* ─── Light Mode ─── */
+:root {
+  --bg-primary:       #fafafa;
+  --bg-secondary:     #f4f4f5;
+  --text-primary:     #0f0f0f;
+  --text-secondary:   #6b7280;
+  --border-color:     rgba(0, 0, 0, 0.07);
+  --border-hover:     rgba(0, 0, 0, 0.13);
+  --btn-primary-bg:   #0f0f0f;
+  --btn-primary-text: #ffffff;
+  --badge-bg:         #ebebeb;
+  --badge-text:       #4b5563;
+  --badge-border:     rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Dark Mode ─── */
+.dark {
+  --bg-primary:       #0c0c0e;
+  --bg-secondary:     #141416;
+  --text-primary:     #f1f1f1;
+  --text-secondary:   #8b8b8b;
+  --border-color:     rgba(255, 255, 255, 0.07);
+  --border-hover:     rgba(255, 255, 255, 0.13);
+  --btn-primary-bg:   #f1f1f1;
+  --btn-primary-text: #0c0c0e;
+  --badge-bg:         #1e1e21;
+  --badge-text:       #a1a1aa;
+  --badge-border:     rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Smooth dark mode transition ─── */
+html, body, div, section, header, footer, nav, main,
+p, h1, h2, h3, h4, span, a, button, li, ul {
+  transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Reusable ─── */
+.premium-border {
+  border: 1px solid var(--border-color);
+}
+
+.subtle-shadow {
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+}
+
+.dark .subtle-shadow {
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+}
+
+.stack-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--badge-border);
+  letter-spacing: 0.01em;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--text-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}

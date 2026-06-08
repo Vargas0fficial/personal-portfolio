@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+:root {
+  /* ... existings color variables ... */
+
+  /* ————— Skill Brand Hooks (Light Mode Defaults) ————— */
+  --v-html: rgba(227, 76, 38, 0.15);
+  --v-html-border: #e34c26;
+  --v-html-glow: #e34c26;
+  --v-html-text: #e34c26;
+
+  --v-css: rgba(38, 77, 228, 0.15);
+  --v-css-border: #264de4;
+  --v-css-glow: #264de4;
+  --v-css-text: #264de4;
+
+  --v-javascript: rgba(247, 223, 30, 0.15);
+  --v-javascript-border: #f7df1e;
+  --v-javascript-glow: #f7df1e;
+  --v-javascript-text: #323330; /* Darker text for yellow icons in Light Mode */
+
+  --v-typescript: rgba(49, 120, 198, 0.15);
+  --v-typescript-border: #3178c6;
+  --v-typescript-glow: #3178c6;
+  --v-typescript-text: #3178c6;
+
+  --v-react: rgba(97, 218, 251, 0.15);
+  --v-react-border: #61dafb;
+  --v-react-glow: #61dafb;
+  --v-react-text: #0088cc; /* Darker text for Light Mode */
+
+  --v-nextjs: rgba(128, 128, 128, 0.15);
+  --v-nextjs-border: #111111;
+  --v-nextjs-glow: #111111;
+  --v-nextjs-text: #111111;
+
+  --v-tailwindcss: rgba(56, 189, 248, 0.15);
+  --v-tailwindcss-border: #38bdf8;
+  --v-tailwindcss-glow: #38bdf8;
+  --v-tailwindcss-text: #38bdf8;
+
+  --v-bootstrap: rgba(121, 82, 179, 0.15);
+  --v-bootstrap-border: #7952b3;
+  --v-bootstrap-glow: #7952b3;
+  --v-bootstrap-text: #7952b3;
+
+  --v-git: rgba(240, 80, 50, 0.15);
+  --v-git-border: #fc2600;
+  --v-git-glow: #fc2600;
+  --v-git-text: #fc2600;
+
+  --v-postman: rgba(255, 108, 55, 0.15);
+  --v-postman-border: #FF6C37;
+  --v-postman-glow: #FF6C37;
+  --v-postman-text: #FF6C37;
+
+  --v-mongodb: rgba(60, 170, 120, 0.15);
+  --v-mongodb-border: #3ca878;
+  --v-mongodb-glow: #3ca878;
+  --v-mongodb-text: #3ca878;
+
+  --v-express: rgba(170, 170, 170, 0.15);
+  --v-express-border: #aaaaaa;
+  --v-express-glow: #aaaaaa;
+  --v-express-text: #aaaaaa;
+
+  --v-python: rgba(55, 118, 171, 0.15);
+  --v-python-border: #3776ab;
+  --v-python-glow: #3776ab;
+  --v-python-text: #3776ab;
+
+  --v-cpp: rgba(0, 89, 156, 0.15);
+  --v-cpp-border: #00599c;
+  --v-cpp-glow: #00599c;
+  --v-cpp-text: #00599c;
+
+  --v-erlang: rgba(169, 0, 50, 0.15);
+  --v-erlang-border: #a90032;
+  --v-erlang-glow: #a90032;
+  --v-erlang-text: #a90032;
+
+  --v-flutter: rgba(2, 86, 155, 0.15);
+  --v-flutter-border: #02569b;
+  --v-flutter-glow: #02569b;
+  --v-flutter-text: #02569b;
+
+  --v-firebase: rgba(255, 201, 14, 0.15);
+  --v-firebase-border: #ffc90e;
+  --v-firebase-glow: #ffc90e;
+  --v-firebase-text: #323330; /* Darker text */
+
+  --v-vscode: rgba(0, 122, 204, 0.15);
+  --v-vscode-border: #007acc;
+  --v-vscode-glow: #007acc;
+  --v-vscode-text: #007acc;
+
+  --v-claude: rgba(204, 153, 102, 0.15);
+  --v-claude-border: #CC9966;
+  --v-claude-glow: #CC9966;
+  --v-claude-text: #CC9966;
+
+  --v-gemini: rgba(122, 153, 255, 0.15);
+  --v-gemini-border: #7a95ff;
+  --v-gemini-glow: #7a95ff;
+  --v-gemini-text: #7a95ff;
+
+  --v-vercel: rgba(0, 0, 0, 0.15);
+  --v-vercel-border: #111111;
+  --v-vercel-glow: #111111;
+  --v-vercel-text: #111111;
+
+  --v-render: rgba(70, 232, 157, 0.15);
+  --v-render-border: #46e89d;
+  --v-render-glow: #46e89d;
+  --v-render-text: #228866; /* Darker text for green icons in Light Mode */
+}
+
+.dark {
+  /* ... existing dark color variables ... */
+
+  /* ————— Skill Brand Hooks (Dark Mode Overrides) ————— */
+  --v-javascript-text: #f7df1e; /* Correct yellow icon in Dark Mode */
+  --v-react-text: #61dafb; /* Correct cyan text in Dark Mode */
+  --v-nextjs-border: #ffffff; /* White borders for nextjs/vercel */
+  --v-nextjs-glow: #ffffff;
+  --v-nextjs-text: #ffffff;
+  --v-firebase-text: #ffc90e; /* Correct yellow/amber text in Dark Mode */
+  --v-vercel-border: #ffffff;
+  --v-vercel-glow: #ffffff;
+  --v-vercel-text: #ffffff;
+  --v-render-text: #46e89d; /* Correct green text in Dark Mode */
+}
