@@ -14,7 +14,7 @@ const minimalistProjects = [
   {
     title: 'Image-PDF Merger & Converter',
     description: 'Easily convert images to PDF and merge documents. ads Free! Built with a focus on clean design and efficient performance, this tool simplifies file management tasks for users of all levels.',
-    link: '#',
+    link: 'https://my-converter-app-mdv.vercel.app/',
     github: '#',
     image: '/screenshots/project-2.png',
     stacks: ['Typescript', 'Python'],
@@ -39,9 +39,11 @@ const minimalistProjects = [
 
 const Projects = () => {
   return (
-    /* FIXED MAIN WRAPPER: Nilagyan natin ng overflow-hidden at max-w-full para hindi tumagilid sa phone */
     <section id="projects" className="py-24 border-t border-[var(--border-color)] w-full max-w-full overflow-hidden block">
-      <div className="w-full max-w-full px-1"> {/* Fixed fluid width utility */}
+      
+      {/* 🌟 FIXED STRUCTURAL GRID WALL: Pinalitan ang px-1 ng master alignment settings */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+        
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,13 +53,13 @@ const Projects = () => {
           Projects
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {minimalistProjects.map((project, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10px" }} // Mas maagang magtitrigger para iwas lag sa phone
+              viewport={{ once: true, margin: "-10px" }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
               className="rounded-xl premium-border bg-[var(--bg-primary)] subtle-shadow overflow-hidden flex flex-col group w-full"
             >
@@ -118,6 +120,7 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

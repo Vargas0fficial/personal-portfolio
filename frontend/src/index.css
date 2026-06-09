@@ -1,5 +1,31 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   FORCE MOBILE OVERFLOW SHIELD (Tailwind v4.0 Standard) gar
+   ========================================================================== */
+@layer base {
+  html, 
+  body {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    scroll-behavior: smooth;
+  }
+
+  /* Panangga sa lahat ng layout wrappers mo laban sa horizontal gaps */
+  main, 
+  section, 
+  header, 
+  footer, 
+  div[id] {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+
 :root {
   /* ... existings color variables ... */
 
@@ -119,14 +145,14 @@
   /* ... existing dark color variables ... */
 
   /* ————— Skill Brand Hooks (Dark Mode Overrides) ————— */
-  --v-javascript-text: #f7df1e; /* Correct yellow icon in Dark Mode */
-  --v-react-text: #61dafb; /* Correct cyan text in Dark Mode */
-  --v-nextjs-border: #ffffff; /* White borders for nextjs/vercel */
+  --v-javascript-text: #f7df1e;
+  --v-react-text: #61dafb;
+  --v-nextjs-border: #ffffff;
   --v-nextjs-glow: #ffffff;
   --v-nextjs-text: #ffffff;
-  --v-firebase-text: #ffc90e; /* Correct yellow/amber text in Dark Mode */
+  --v-firebase-text: #ffc90e;
   --v-vercel-border: #ffffff;
   --v-vercel-glow: #ffffff;
   --v-vercel-text: #ffffff;
-  --v-render-text: #46e89d; /* Correct green text in Dark Mode */
+  --v-render-text: #46e89d;
 }

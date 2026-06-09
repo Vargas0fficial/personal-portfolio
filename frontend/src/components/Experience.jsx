@@ -18,8 +18,11 @@ const jobHistory = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-24 border-t border-[var(--border-color)]">
-      <div>
+    <section id="experience" className="py-24 border-t border-[var(--border-color)] bg-[var(--bg-primary)]">
+      
+      {/* 🌟 FIXED STRUCTURAL GRID WALL: Pinantay ang timeline grid sa master portfolio boundaries */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+        
         <motion.h2 
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,6 +54,7 @@ const Experience = () => {
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

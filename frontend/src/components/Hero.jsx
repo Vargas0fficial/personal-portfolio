@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiTwitter, FiMail } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiFacebook, FiMail } from 'react-icons/fi';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -33,7 +33,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % titles.length);
-    }, 4000); // Papalit bawat 4 segundot
+    }, 4000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -42,112 +42,107 @@ const Hero = () => {
       
       <div className="absolute right-[-5%] top-[20%] w-[400px] h-[400px] bg-gradient-to-tr from-neutral-300/10 to-transparent dark:from-neutral-700/5 rounded-full filter blur-[100px] pointer-events-none" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full relative z-10">
+      {/* 🌟 FIXED INNER CONTAINER WRAPPER: 
+          Ito ang magpapatatag ng alignment gar! Eksaktong katapat ng invisible grid wall ng Navbar mo */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
         
-        {/* Left Side Texts & Buttons */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="lg:col-span-7 space-y-6 text-left order-2 lg:order-1"
-        >
-          <motion.p variants={itemVariants} className="text-[var(--text-secondary)] text-lg font-light tracking-wide">
-            Hi, I'm
-          </motion.p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
           
-          <div className="space-y-3">
-            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold tracking-tight text-[var(--text-primary)]">
-              Mark Vargas.
-            </motion.h1>
+          {/* Left Side Texts & Buttons */}
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="lg:col-span-7 space-y-6 text-left order-2 lg:order-1"
+          >
+            <motion.p variants={itemVariants} className="text-[var(--text-secondary)] text-lg font-light tracking-wide">
+              Hi, I'm
+            </motion.p>
             
-            {/* FIXED CYCLING TYPEWRITER WITH MOVING CURSOR */}
-            <motion.h2 
-              variants={itemVariants}
-              className="text-2xl md:text-3xl font-medium tracking-wide h-[40px] flex items-center text-[var(--text-primary)]"
-            >
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={index}
-                  className="inline-flex items-center"
-                >
-                  {/* Isa-isang niluluwa ang mga letra */}
-                  {titles[index].split("").map((letter, i) => (
+            <div className="space-y-3">
+              <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold tracking-tight text-[var(--text-primary)]">
+                Mark Vargas<span className="text-[var(--text-primary)]">.</span>
+              </motion.h1>
+              
+              <motion.h2 
+                variants={itemVariants}
+                className="text-2xl md:text-3xl font-medium tracking-wide h-[40px] flex items-center text-[var(--text-primary)]"
+              >
+                <AnimatePresence mode="wait">
+                  <motion.span key={index} className="inline-flex items-center">
+                    {titles[index].split("").map((letter, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: i * 0.10, duration: 0.1 }}
+                      >
+                        {letter === " " ? "\u00A0" : letter}
+                      </motion.span>
+                    ))}
                     <motion.span
-                      key={i}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{
-                        delay: i * 0.10, // Bilis ng pag-type
-                        duration: 0.1
-                      }}
-                    >
-                      {letter === " " ? "\u00A0" : letter}
-                    </motion.span>
-                  ))}
-                  
-                  {/* Moving Cursor */}
-                  <motion.span
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
-                    className="inline-block ml-1.5 w-[2.5px] h-[24px] md:h-[28px] bg-[var(--text-primary)] translate-y-[1px]"
-                  />
-                </motion.span>
-              </AnimatePresence>
-            </motion.h2>
-          </div>
+                      animate={{ opacity: [0, 1, 0] }}
+                      transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
+                      className="inline-block ml-1.5 w-[2.5px] h-[24px] md:h-[28px] bg-[var(--text-primary)] translate-y-[1px]"
+                    />
+                  </motion.span>
+                </AnimatePresence>
+              </motion.h2>
+            </div>
 
-          <motion.p variants={itemVariants} className="text-[var(--text-secondary)] text-base max-w-md font-light leading-relaxed">
-            I build responsive and modern web applications with clean code and great user experience.
-          </motion.p>
+            <motion.p variants={itemVariants} className="text-[var(--text-secondary)] text-base max-w-md font-light leading-relaxed">
+              I build responsive and modern web applications with clean code and great user experience.
+            </motion.p>
 
-          <motion.div variants={itemVariants} className="flex items-center gap-4 pt-3">
-            <motion.a 
-              href="#projects" 
-              whileHover={{ y: -3, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              style={{ backgroundColor: 'var(--btn-primary-bg)', color: 'var(--btn-primary-text)' }}
-              className="px-6 py-3 rounded-lg text-sm font-medium shadow-sm"
-            >
-              View Projects
-            </motion.a>
-            <motion.a 
-              href="#contact" 
-              whileHover={{ y: -3, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-6 py-3 rounded-lg text-sm font-medium premium-border bg-transparent text-[var(--text-primary)] transition-all"
-            >
-              Contact Me
-            </motion.a>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="flex items-center gap-5 pt-6 text-xl">
-            {[FiGithub, FiLinkedin, FiTwitter, FiMail].map((Icon, idx) => (
-              <motion.a key={idx} href="#" whileHover={{ y: -4, scale: 1.15 }} className="text-neutral-400 dark:text-neutral-500 transition-colors">
-                <Icon />
+            <motion.div variants={itemVariants} className="flex items-center gap-4 pt-3">
+              <motion.a 
+                href="#projects" 
+                whileHover={{ y: -3, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                style={{ backgroundColor: 'var(--btn-primary-bg)', color: 'var(--btn-primary-text)' }}
+                className="px-6 py-3 rounded-lg text-sm font-medium shadow-sm"
+              >
+                View Projects
               </motion.a>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Right Side Avatar */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.92, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="lg:col-span-5 flex justify-center order-1 lg:order-2"
-        >
-          <div className="relative p-2 rounded-full bg-transparent">
-            <motion.div 
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center border border-solid border-neutral-200 dark:border-neutral-800/80 subtle-shadow group cursor-pointer transform-gpu"
-            >
-              <img src="mark.jpg" alt="MARK VARGAS" className="w-[101%] h-[101%] max-w-none object-cover grayscale brightness-95 dark:brightness-90 contrast-105 transition-all duration-700 group-hover:grayscale-0 transform-gpu" />
-              <div className="absolute inset-[-1px] border-[2px] border-neutral-100 dark:border-neutral-900 rounded-full z-20" />
+              <motion.a 
+                href="#contact" 
+                whileHover={{ y: -3, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-6 py-3 rounded-lg text-sm font-medium premium-border bg-transparent text-[var(--text-primary)] transition-all"
+              >
+                Contact Me
+              </motion.a>
             </motion.div>
-          </div>
-        </motion.div>
 
+            <motion.div variants={itemVariants} className="flex items-center gap-5 pt-6 text-xl">
+              {[FiGithub, FiLinkedin, FiFacebook, FiMail].map((Icon, idx) => (
+                <motion.a key={idx} href="" whileHover={{ y: -4, scale: 1.15 }} className="text-neutral-400 dark:text-neutral-500 transition-colors">
+                  <Icon />
+                </motion.a>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Right Side Avatar */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.92, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="lg:col-span-5 flex justify-center order-1 lg:order-2"
+          >
+            <div className="relative p-2 rounded-full bg-transparent">
+              <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center border border-solid border-neutral-200 dark:border-neutral-800/80 subtle-shadow group cursor-pointer transform-gpu"
+              >
+                <img src="mark.jpg" alt="MARK VARGAS" className="w-[101%] h-[101%] max-w-none object-cover grayscale brightness-95 dark:brightness-90 contrast-105 transition-all duration-700 group-hover:grayscale-0 transform-gpu" />
+                <div className="absolute inset-[-1px] border-[2px] border-neutral-100 dark:border-neutral-900 rounded-full z-20" />
+              </motion.div>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">

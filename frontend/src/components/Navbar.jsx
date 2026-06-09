@@ -1,68 +1,141 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { FiSun, FiMoon, FiPlus } from 'react-icons/fi';
 
 const Navbar = ({ darkMode, setDarkMode }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const menuItems = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'];
+
+  // Animations para sa entry ng listahan ng links
+  const menuVariants = {
+    hidden: { opacity: 0, y: -10, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.1,
+        duration: 0.4,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -10,
+      scale: 0.95,
+      transition: { duration: 0.2, ease: "easeInOut" }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -5 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  };
+
   return (
-    /* FIXED NAVBAR WRAPPER: Nilagyan ng max-w-full at overflow-hidden para panangga sa mobile scroll bugs */
-    <nav className="fixed top-0 left-0 w-full max-w-full z-50 py-4 bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40 transition-colors duration-300 overflow-hidden block">
-      
-      {/* FIXED INNER CONTAINER: Inayos ang horizontal padding (px-4 sa mobile, px-8 sa tablet, px-16 sa desktop) */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex justify-between items-center">
-        
-        {/* Brand Initials Logo */}
-        <a href="#" className="text-xl font-bold tracking-tight text-[var(--text-primary)] group">
-          MV<span className="text-neutral-400 group-hover:text-[var(--text-primary)] transition-colors duration-300">.</span>
-        </a>
-        
-        {/* Navigation Items */}
-        <div className="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-          {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
-            <a 
-              key={item} 
-              href={`#${item.toLowerCase()}`} 
-              className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors relative group py-1"
+    <>
+      {/* 🌟 INVISIBLE BACKDROP LAYER:
+          Kapag bukas ang menu at nag-click ka sa labas, automatic itong magsasara gar */}
+      <AnimatePresence>
+        {isOpen && (
+          <div 
+            onClick={() => setIsOpen(false)} 
+            className="fixed inset-0 w-full h-screen z-30 bg-transparent cursor-default"
+          />
+        )}
+      </AnimatePresence>
+
+      <nav className="fixed top-0 left-0 w-full max-w-full z-50 py-4 bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40 transition-colors duration-300 overflow-hidden block">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex justify-between items-center relative min-h-[44px]">
+          
+          {/* Brand Initials Logo */}
+          <a href="#" className="text-xl font-bold tracking-tight text-[var(--text-primary)] group z-50">
+            MV<span className="text-[var(--text-primary)]">.</span>
+          </a>
+          
+          {/* 🌟 CENTER CONTAINER */}
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center items-center pointer-events-none z-40">
+            <AnimatePresence mode="wait">
+              {!isOpen ? (
+                /* KUNG SARADO: Lilitaw si + Button sa gitna */
+                <motion.button
+                  key="plus-btn"
+                  onClick={() => setIsOpen(true)}
+                  type="button"
+                  initial={{ opacity: 0, scale: 0.8, rotate: -45 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, rotate: 45 }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="p-2.5 rounded-xl border border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/60 shadow-sm flex items-center justify-center focus:outline-none cursor-pointer pointer-events-auto"
+                  aria-label="Open Menu"
+                >
+                  <FiPlus size={18} />
+                </motion.button>
+              ) : (
+                /* KUNG BUKAS: Option B — underline style links */
+                <motion.div
+                  key="centered-menu"
+                  variants={menuVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  className="flex items-center gap-1 pointer-events-auto py-1 px-2"
+                >
+                  {menuItems.map((item) => (
+                    <motion.a
+                      key={item}
+                      href={`#${item.toLowerCase()}`}
+                      onClick={() => setIsOpen(false)}
+                      variants={itemVariants}
+                      whileHover={{ y: 0 }}
+                      className="relative px-3.5 py-2 text-sm font-normal tracking-wide text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200 after:absolute after:bottom-0.5 after:left-3.5 after:right-3.5 after:h-[1.5px] after:bg-[var(--text-primary)] after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100"
+                    >
+                      {item}
+                    </motion.a>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Premium Dark Mode Toggle Switch */}
+          <div className="z-50">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              type="button"
+              className="relative p-2.5 rounded-xl border border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/60 shadow-sm transition-all duration-300 flex items-center justify-center focus:outline-none cursor-pointer overflow-hidden"
+              aria-label="Toggle Theme"
             >
-              {item}
-              <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-[var(--text-primary)] transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
+              <AnimatePresence mode="wait" initial={false}>
+                {darkMode ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ y: -20, rotate: 90, opacity: 0 }}
+                    animate={{ y: 0, rotate: 0, opacity: 1 }}
+                    exit={{ y: 20, rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                  >
+                    <FiSun size={18} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ y: -20, rotate: -90, opacity: 0 }}
+                    animate={{ y: 0, rotate: 0, opacity: 1 }}
+                    exit={{ y: 20, rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                  >
+                    <FiMoon size={18} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
+
         </div>
-
-        {/* Premium Functional Toggle Controller */}
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          type="button"
-          className="relative p-2.5 rounded-xl border border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/60 shadow-sm transition-all duration-300 flex items-center justify-center focus:outline-none cursor-pointer overflow-hidden"
-          aria-label="Toggle Theme"
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            {darkMode ? (
-              <motion.div
-                key="sun"
-                initial={{ y: -20, rotate: 90, opacity: 0 }}
-                animate={{ y: 0, rotate: 0, opacity: 1 }}
-                exit={{ y: 20, rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-              >
-                <FiSun size={18} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="moon"
-                initial={{ y: -20, rotate: -90, opacity: 0 }}
-                animate={{ y: 0, rotate: 0, opacity: 1 }}
-                exit={{ y: 20, rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-              >
-                <FiMoon size={18} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </button>
-
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

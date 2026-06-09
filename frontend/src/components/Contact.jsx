@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiTwitter, FiMail, FiCopy, FiCheck } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiFacebook, FiMail, FiCopy, FiCheck } from 'react-icons/fi';
 
 const EMAIL = 'mbvargas19@gmail.com';
 
 const socials = [
-  { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/markvargas' },
-  { icon: FiLinkedin, label: 'LinkedIn',  href: 'https://linkedin.com/in/markvargas' },
-  { icon: FiTwitter,  label: 'Twitter',   href: 'https://twitter.com/markvargas' },
+  { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/Vargas0fficial' },
+  { icon: FiLinkedin, label: 'LinkedIn',  href: 'https://linkedin.com/in/worstcodervargas1' },
+  { icon: FiFacebook,  label: 'Facebook',   href: 'https://facebook.com/worstCoder.Vargas' },
 ];
 
 const Contact = () => {
