@@ -4,8 +4,11 @@ import { FiSun, FiMoon } from 'react-icons/fi';
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 py-5 bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex justify-between items-center">
+    /* FIXED NAVBAR WRAPPER: Nilagyan ng max-w-full at overflow-hidden para panangga sa mobile scroll bugs */
+    <nav className="fixed top-0 left-0 w-full max-w-full z-50 py-4 bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40 transition-colors duration-300 overflow-hidden block">
+      
+      {/* FIXED INNER CONTAINER: Inayos ang horizontal padding (px-4 sa mobile, px-8 sa tablet, px-16 sa desktop) */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex justify-between items-center">
         
         {/* Brand Initials Logo */}
         <a href="#" className="text-xl font-bold tracking-tight text-[var(--text-primary)] group">
@@ -27,14 +30,12 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         </div>
 
         {/* Premium Functional Toggle Controller */}
-        {/* FIXED CLASSES: Inalis ang premium-border, ni-lock ang background at transition para iwas flashbang */}
         <button
           onClick={() => setDarkMode(!darkMode)}
           type="button"
           className="relative p-2.5 rounded-xl border border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/60 shadow-sm transition-all duration-300 flex items-center justify-center focus:outline-none cursor-pointer overflow-hidden"
           aria-label="Toggle Theme"
         >
-          {/* ANIMATED ICONS: May smooth fade at rotation rotation micro-interaction gar */}
           <AnimatePresence mode="wait" initial={false}>
             {darkMode ? (
               <motion.div

@@ -39,8 +39,9 @@ const minimalistProjects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 border-t border-[var(--border-color)]">
-      <div>
+    /* FIXED MAIN WRAPPER: Nilagyan natin ng overflow-hidden at max-w-full para hindi tumagilid sa phone */
+    <section id="projects" className="py-24 border-t border-[var(--border-color)] w-full max-w-full overflow-hidden block">
+      <div className="w-full max-w-full px-1"> {/* Fixed fluid width utility */}
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,18 +51,18 @@ const Projects = () => {
           Projects
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-full">
           {minimalistProjects.map((project, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="rounded-xl premium-border bg-[var(--bg-primary)] subtle-shadow overflow-hidden flex flex-col group"
+              viewport={{ once: true, margin: "-10px" }} // Mas maagang magtitrigger para iwas lag sa phone
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+              className="rounded-xl premium-border bg-[var(--bg-primary)] subtle-shadow overflow-hidden flex flex-col group w-full"
             >
               {/* Screenshot */}
-              <div className="w-full h-44 overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+              <div className="w-full h-44 overflow-hidden bg-neutral-100 dark:bg-neutral-800 relative">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -70,12 +71,12 @@ const Projects = () => {
               </div>
 
               {/* Body */}
-              <div className="p-6 flex flex-col justify-between flex-1 space-y-4">
+              <div className="p-6 flex flex-col justify-between flex-1 space-y-4 w-full">
                 <div className="space-y-3">
-                  <h3 className="text-base font-semibold text-[var(--text-primary)] leading-snug">
+                  <h3 className="text-base font-semibold text-[var(--text-primary)] leading-snug break-words">
                     {project.title}
                   </h3>
-                  <p className="text-[var(--text-secondary)] text-sm font-light leading-relaxed">
+                  <p className="text-[var(--text-secondary)] text-sm font-light leading-relaxed break-words">
                     {project.description}
                   </p>
 
@@ -84,7 +85,7 @@ const Projects = () => {
                     {project.stacks.map((stack, i) => (
                       <span
                         key={i}
-                        className="stack-badge"
+                        className="stack-badge whitespace-nowrap"
                       >
                         {stack}
                       </span>
@@ -93,7 +94,7 @@ const Projects = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex items-center gap-5 pt-4 border-t border-[var(--border-color)]">
+                <div className="flex items-center gap-5 pt-4 border-t border-[var(--border-color)] mt-auto">
                   <a
                     href={project.link}
                     target="_blank"
