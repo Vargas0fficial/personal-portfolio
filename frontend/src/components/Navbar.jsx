@@ -46,7 +46,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         )}
       </AnimatePresence>
 
-      <nav className="fixed top-0 left-0 w-full max-w-full z-50 py-4 bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40 transition-colors duration-300 overflow-hidden block">
+      <nav className="fixed top-0 left-0 w-full max-w-full z-50 py-4 bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40 transition-colors duration-300 block">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 flex justify-between items-center relative min-h-[44px]">
           
           {/* Brand Initials Logo */}
@@ -55,7 +55,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           </a>
           
           {/* 🌟 CENTER CONTAINER */}
-          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center items-center pointer-events-none z-40">
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 hidden md:flex justify-center items-center pointer-events-none z-40">
             <AnimatePresence mode="wait">
               {!isOpen ? (
                 /* KUNG SARADO: Lilitaw si + Button sa gitna */
@@ -99,7 +99,20 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             </AnimatePresence>
           </div>
 
-          {/* Premium Dark Mode Toggle Switch */}
+          {/* Mobile: + button always visible sa gitna, hidden sa md+ */}
+          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex md:hidden justify-center items-center pointer-events-none z-40">
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              type="button"
+              animate={{ rotate: isOpen ? 45 : 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="p-2.5 rounded-xl border border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800/60 shadow-sm flex items-center justify-center focus:outline-none cursor-pointer pointer-events-auto"
+              aria-label="Toggle Menu"
+            >
+              <FiPlus size={18} />
+            </motion.button>
+          </div>
+
           <div className="z-50">
             <button
               onClick={() => setDarkMode(!darkMode)}
@@ -135,6 +148,29 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
         </div>
       </nav>
+      {/* Mobile dropdown — fixed, nasa labas ng nav para hindi mag-overflow */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="md:hidden fixed top-[73px] left-0 w-full bg-[var(--bg-primary)]/95 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40 py-4 px-8 flex flex-col gap-4 z-40"
+          >
+            {menuItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setIsOpen(false)}
+                className="text-sm font-normal tracking-wide text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200"
+              >
+                {item}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
