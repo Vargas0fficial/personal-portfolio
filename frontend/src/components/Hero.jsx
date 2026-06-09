@@ -42,8 +42,6 @@ const Hero = () => {
       
       <div className="absolute right-[-5%] top-[20%] w-[400px] h-[400px] bg-gradient-to-tr from-neutral-300/10 to-transparent dark:from-neutral-700/5 rounded-full filter blur-[100px] pointer-events-none" />
 
-      {/* 🌟 FIXED INNER CONTAINER WRAPPER: 
-          Ito ang magpapatatag ng alignment gar! Eksaktong katapat ng invisible grid wall ng Navbar mo */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
@@ -134,9 +132,15 @@ const Hero = () => {
               <motion.div 
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center border border-solid border-neutral-200 dark:border-neutral-800/80 subtle-shadow group cursor-pointer transform-gpu"
+                className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center border border-solid border-neutral-200 dark:border-neutral-800/80 subtle-shadow transform-gpu"
               >
-                <img src="mark.jpg" alt="MARK VARGAS" className="w-[101%] h-[101%] max-w-none object-cover grayscale brightness-95 dark:brightness-90 contrast-105 transition-all duration-700 group-hover:grayscale-0 transform-gpu" />
+                <motion.img
+                  src="mark.jpg"
+                  alt="MARK VARGAS"
+                  className="w-[101%] h-[101%] max-w-none object-cover brightness-95 dark:brightness-90 contrast-105 transform-gpu"
+                  animate={{ filter: ["grayscale(1)", "grayscale(0)", "grayscale(1)"] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                />
                 <div className="absolute inset-[-1px] border-[2px] border-neutral-100 dark:border-neutral-900 rounded-full z-20" />
               </motion.div>
             </div>
