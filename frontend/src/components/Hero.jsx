@@ -38,7 +38,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center relative pt-16 overflow-hidden bg-[var(--bg-primary)] transition-colors duration-300">
+    <section id="home" className="min-h-screen flex flex-col justify-center relative pt-28 overflow-hidden bg-[var(--bg-primary)] transition-colors duration-300">
       
       <div className="absolute right-[-5%] top-[20%] w-[400px] h-[400px] bg-gradient-to-tr from-neutral-300/10 to-transparent dark:from-neutral-700/5 rounded-full filter blur-[100px] pointer-events-none" />
 
@@ -149,7 +149,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2">
         <div className="flex flex-col items-center">
           {[0, 0.2, 0.4].map((delay, i) => (
             <motion.div key={i} animate={{ opacity: [0.2, 1, 0.2], y: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity, delay }} className="w-3 h-3 border-r-[1.5px] border-b-[1.5px] border-[var(--text-primary)] rotate-45 -mt-1" />

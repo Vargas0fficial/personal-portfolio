@@ -6,7 +6,6 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuItems = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'];
 
-  // Animations para sa entry ng listahan ng links
   const menuVariants = {
     hidden: { opacity: 0, y: -10, scale: 0.95 },
     visible: {
@@ -35,8 +34,6 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   return (
     <>
-      {/* 🌟 INVISIBLE BACKDROP LAYER:
-          Kapag bukas ang menu at nag-click ka sa labas, automatic itong magsasara gar */}
       <AnimatePresence>
         {isOpen && (
           <div 
@@ -54,11 +51,10 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             MV<span className="text-[var(--text-primary)]">.</span>
           </a>
           
-          {/* 🌟 CENTER CONTAINER */}
+          {/* Desktop CENTER CONTAINER */}
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 hidden md:flex justify-center items-center pointer-events-none z-40">
             <AnimatePresence mode="wait">
               {!isOpen ? (
-                /* KUNG SARADO: Lilitaw si + Button sa gitna */
                 <motion.button
                   key="plus-btn"
                   onClick={() => setIsOpen(true)}
@@ -73,7 +69,6 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   <FiPlus size={18} />
                 </motion.button>
               ) : (
-                /* KUNG BUKAS: Option B — underline style links */
                 <motion.div
                   key="centered-menu"
                   variants={menuVariants}
@@ -99,7 +94,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             </AnimatePresence>
           </div>
 
-          {/* Mobile: + button always visible sa gitna, hidden sa md+ */}
+          {/* Mobile: + button sa gitna */}
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex md:hidden justify-center items-center pointer-events-none z-40">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
@@ -113,6 +108,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             </motion.button>
           </div>
 
+          {/* Dark mode toggle */}
           <div className="z-50">
             <button
               onClick={() => setDarkMode(!darkMode)}
@@ -148,7 +144,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
         </div>
       </nav>
-      {/* Mobile dropdown — fixed, nasa labas ng nav para hindi mag-overflow */}
+
+      {/* Mobile dropdown — centered links */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -156,7 +153,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="md:hidden fixed top-[73px] left-0 w-full bg-[var(--bg-primary)]/95 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40 py-4 px-8 flex flex-col gap-4 z-40"
+            className="md:hidden fixed top-[73px] left-0 w-full bg-[var(--bg-primary)]/95 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40 py-4 px-8 flex flex-col gap-4 z-40 items-center"
           >
             {menuItems.map((item) => (
               <a
