@@ -4,7 +4,7 @@ import { FiSun, FiMoon, FiPlus } from 'react-icons/fi';
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const menuItems = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'];
+  const menuItems = ['Home', 'About', 'Stack', 'Projects', 'Experience', 'Contact'];
 
   const menuVariants = {
     hidden: { opacity: 0, y: -10, scale: 0.95 },
