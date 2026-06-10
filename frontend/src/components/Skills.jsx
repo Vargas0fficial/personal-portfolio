@@ -57,7 +57,7 @@ const itemVariants = {
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 border-t border-[var(--border-color)] relative overflow-hidden bg-[var(--bg-primary)] transition-colors duration-300">
+    <section id="stack" className="py-24 border-t border-[var(--border-color)] relative overflow-hidden bg-[var(--bg-primary)] transition-colors duration-300">
       <div className="absolute left-[-10%] top-1/2 -translate-y-1/2 w-80 h-80 bg-neutral-400/5 dark:bg-neutral-100/2 rounded-full filter blur-[80px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4">
