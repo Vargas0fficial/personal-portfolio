@@ -29,6 +29,7 @@ const Hero = () => {
   ];
 
   const [index, setIndex] = useState(0);
+  const [typingDone, setTypingDone] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,6 +37,18 @@ const Hero = () => {
     }, 4000); 
     return () => clearInterval(interval);
   }, []);
+
+  // Reset typingDone every time the title changes, then set it after typing finishes
+  useEffect(() => {
+    setTypingDone(false);
+    const currentTitle = titles[index];
+    // Total time = last letter's delay + its duration
+    const typingDuration = (currentTitle.length - 1) * 0.10 + 0.1;
+    const timeout = setTimeout(() => {
+      setTypingDone(true);
+    }, typingDuration * 1000);
+    return () => clearTimeout(timeout);
+  }, [index]);
 
   return (
     <section id="home" className="min-h-screen flex flex-col justify-center relative pt-28 overflow-hidden bg-[var(--bg-primary)] transition-colors duration-300">
@@ -78,13 +91,14 @@ const Hero = () => {
                         {letter === " " ? "\u00A0" : letter}
                       </motion.span>
                     ))}
-                    <motion.span
-                      animate={{ opacity: [0, 1, 0] }}
-                      transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
-                      className="inline-block ml-1.5 w-[2.5px] h-[24px] md:h-[28px] bg-[var(--text-primary)] translate-y-[1px]"
-                    />
                   </motion.span>
                 </AnimatePresence>
+                {/* Cursor is outside AnimatePresence — independent control */}
+                <motion.span
+                  animate={typingDone ? { opacity: [1, 0, 1] } : { opacity: 0 }}
+                  transition={typingDone ? { repeat: Infinity, duration: 0.8, ease: "easeInOut" } : {}}
+                  className="inline-block ml-1.5 w-[2.5px] h-[24px] md:h-[28px] bg-[var(--text-primary)] translate-y-[1px]"
+                />
               </motion.h2>
             </div>
 

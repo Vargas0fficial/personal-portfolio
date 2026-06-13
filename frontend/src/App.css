@@ -11,6 +11,9 @@
   --badge-bg:         #ebebeb;
   --badge-text:       #4b5563;
   --badge-border:     rgba(0, 0, 0, 0.08);
+
+  --font-heading: 'Geist', sans-serif;
+  --font-body:    'Inter', sans-serif;
 }
 
 /* ─── Dark Mode ─── */
@@ -44,6 +47,19 @@ html {
 body {
   background-color: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body);
+}
+
+/* ─── Headings use Geist ─── */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Body text, nav, labels use Inter ─── */
+h4, h5, h6, p, span, a, button, input, textarea, li {
+  font-family: var(--font-body);
 }
 
 /* ─── Reusable ─── */
@@ -69,6 +85,7 @@ body {
   color: var(--badge-text);
   border: 1px solid var(--badge-border);
   letter-spacing: 0.01em;
+  font-family: var(--font-body);
 }
 
 .nav-link {
