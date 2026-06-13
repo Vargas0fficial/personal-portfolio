@@ -118,7 +118,7 @@ const Certificates = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="flex flex-col w-full divide-y divide-neutral-100 dark:divide-neutral-900"
+          className="flex flex-col w-full divide-y divide-[var(--border-color)]"
         >
           {certificatesList.map((cert) => (
             <motion.div
@@ -128,12 +128,12 @@ const Certificates = () => {
             >
               {/* Left Side: Title and Issuer Stacking */}
               <div className="flex-1 min-w-0">
-                <h3 className="text-base font-medium text-neutral-900 dark:text-neutral-100 tracking-tight leading-snug break-words">
+                <h3 className="text-base font-medium text-[var(--text-primary)] tracking-tight leading-snug break-words">
                   {cert.title}
                 </h3>
                 <p className="text-sm font-normal text-neutral-500 dark:text-neutral-400 mt-1 flex items-center gap-2">
                   <span>{cert.issuer}</span>
-                  <span className="text-neutral-300 dark:text-neutral-700">•</span>
+                  <span className="text-[var(--text-secondary)] opacity-40">•</span>
                   <span className="font-mono text-xs">{cert.date}</span>
                 </p>
               </div>
@@ -144,7 +144,7 @@ const Certificates = () => {
                   href={cert.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-normal text-neutral-800 dark:text-neutral-200 border-b border-neutral-800/80 dark:border-neutral-200/80 pb-0.5 hover:opacity-60 transition-opacity cursor-pointer whitespace-nowrap"
+                  className="inline-flex items-center text-sm font-normal text-[var(--text-primary)] border-b border-[var(--border-hover)] pb-0.5 hover:opacity-60 transition-opacity cursor-pointer whitespace-nowrap"
                 >
                   View ↗
                 </a>
