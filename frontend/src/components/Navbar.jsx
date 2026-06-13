@@ -4,7 +4,9 @@ import { FiSun, FiMoon, FiPlus } from 'react-icons/fi';
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const menuItems = ['Home', 'About', 'Stack', 'Projects', 'Experience', 'Contact'];
+  
+  // 🌟 ISINAWSAW ANG 'Certificates' SA ARRAY MO GAR!
+  const menuItems = ['Home', 'About', 'Stack', 'Projects', 'Certificates', 'Experience', 'Contact'];
 
   const menuVariants = {
     hidden: { opacity: 0, y: -10, scale: 0.95 },
@@ -69,13 +71,14 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                   <FiPlus size={18} />
                 </motion.button>
               ) : (
+                /* 🌟 PINAGANDA ANG CAPSULE CONTAINER PARA SA DARK/LIGHT MODE GAR */
                 <motion.div
                   key="centered-menu"
                   variants={menuVariants}
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="flex items-center gap-1 pointer-events-auto py-1 px-2"
+                  className="flex items-center gap-1 pointer-events-auto py-1 px-4 bg-white/60 dark:bg-black/30 backdrop-blur-md rounded-full border border-neutral-200/40 dark:border-neutral-800/20 shadow-sm transition-all duration-300"
                 >
                   {menuItems.map((item) => (
                     <motion.a
