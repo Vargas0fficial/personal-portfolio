@@ -5,7 +5,7 @@ import { FiSun, FiMoon, FiPlus } from 'react-icons/fi';
 const Navbar = ({ darkMode, setDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   
-  // 🌟 ISINAWSAW ANG 'Certificates' SA ARRAY MO GAR!
+  // Menu items for the navbar
   const menuItems = ['Home', 'About', 'Stack', 'Projects', 'Certificates', 'Experience', 'Contact'];
 
   const menuVariants = {

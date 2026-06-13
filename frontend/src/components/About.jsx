@@ -5,10 +5,10 @@ const About = () => {
   return (
     <section id="about" className="py-24 border-t border-[var(--border-color)] bg-[var(--bg-primary)]">
       
-      {/* 🌟 FIXED STRUCTURAL GRID WALL: Pumapantay sa invisible grid lines ng Navbar at Hero */}
+      {/*  FIXED STRUCTURAL GRID WALL */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         
-        {/* Pinanatili ang iyong text boundaries pero naka-align na sa master row limits */}
+        {/*  */}
         <div className="max-w-3xl">
           <motion.h2 
             initial={{ opacity: 0, y: 15 }}
