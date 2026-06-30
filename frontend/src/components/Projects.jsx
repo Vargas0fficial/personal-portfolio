@@ -24,7 +24,7 @@ const minimalistProjects = [
     description: 'Coming Soon! A dedicated resident portal for the Domalandan East Management System, designed to empower community members with easy access to local services, announcements, and resources. This portal will enhance communication and engagement within the barangay, fostering a stronger sense of community.',
     link: '#',
     github: '#',
-    image: '/screenshots/resident-login.png', 
+    image: '/screenshots/resident-login.png',
     stacks: ['Node.js', 'Express.js', 'MongoDB', 'JWT'],
   },
   {
@@ -32,18 +32,42 @@ const minimalistProjects = [
     description: 'Coming Soon! A sleek, modern landing page for the Barangay Domalandan East Management System, designed to provide a welcoming and informative introduction to the community portal. This landing page will feature an overview of services, key announcements, and easy navigation to essential resources, all wrapped in a visually appealing design.',
     link: '#',
     github: '#',
-    image: '/screenshots/landing-page.jpg', 
+    image: '/screenshots/landing-page.jpg',
     stacks: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
+  },
+  {
+    title: 'Suzuki Management Appointment System - Pangasinan Branch',
+    description: 'A real-time digital appointment system for managing and scheduling appointments at the Suzuki dealership in Pangasinan.',
+    link: 'https://szk-system.vercel.app',
+    github: '#',
+    image: '/screenshots/szk-pang.png',
+    stacks: ['MongoDB', 'Express.js', 'React', 'Node.js'],
+  },
+  {
+    title: 'Suzuki Management Appointment System - Tarlac Branch',
+    description: 'A real-time digital appointment system for managing and scheduling appointments at the Suzuki dealership in Tarlac.',
+    link: 'https://szk-tarlac.vercel.app',
+    github: '#',
+    image: '/screenshots/szk-tarlac.png',
+    stacks: ['MongoDB', 'Express.js', 'React', 'Node.js'],
+  },
+  {
+    title: 'Suzuki Management Appointment System - La Union Branch',
+    description: 'A real-timedigital appointment system for managing and scheduling appointments at the Suzuki dealership in La Union.',
+    link: 'https://szk-launion.vercel.app',
+    github: '#',
+    image: '/screenshots/szk-launion.png',
+    stacks: ['MongoDB', 'Express.js', 'React', 'Node.js'],
   }
 ];
 
 const Projects = () => {
   return (
     <section id="projects" className="py-24 border-t border-[var(--border-color)] w-full max-w-full overflow-hidden block">
-      
-      {/* 🌟 FIXED STRUCTURAL GRID WALL: Pinalitan ang px-1 ng master alignment settings */}
+
+      {/* FIXED STRUCTURAL GRID WALL: Pinalitan ang px-1 ng master alignment settings */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-        
+
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
