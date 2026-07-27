@@ -58,6 +58,14 @@ const minimalistProjects = [
     github: '#',
     image: '/screenshots/szk-launion.png',
     stacks: ['MongoDB', 'Express.js', 'React', 'Node.js'],
+  },
+   {
+    title: 'PSU OJT SYSTEM - GROUP 3',
+    description: 'A PSU OJT Monitoring System is a digital platform designed for Pangasinan State University to track, manage, and evaluate student On-the-Job Training. It automates attendance logs, requirement submissions, and performance evaluations to replace slow manual paperwork',
+    link: 'https://psu-ojt-system-group3.vercel.app/',
+    github: '#',
+    image: '/screenshots/psu-ojt-screenshot.png',
+    stacks: ['MongoDB', 'Express.js', 'React', 'Node.js'],
   }
 ];
 
