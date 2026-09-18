@@ -2,7 +2,7 @@
 // Proxies chat requests to Google Gemini API so the API key never touches the browser.
 // Deploy target: same Vercel project as the frontend (this file lives at <project-root>/api/chat.js)
 
-const GEMINI_MODEL = 'gemini-3-flash-preview'; // free-tier model
+const GEMINI_MODEL = 'gemini-3-flash-preview'; // free-tier model (gemini-2.5-flash was retired for new API keys)
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 // Context about Mark so the model answers accurately instead of guessing.
@@ -68,8 +68,11 @@ export default async function handler(req, res) {
         contents,
         systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
         generationConfig: {
-          maxOutputTokens: 300,
+          maxOutputTokens: 1024,
           temperature: 0.6,
+          thinkingConfig: {
+            thinkingLevel: 'low',
+          },
         },
       }),
     });
