@@ -8,6 +8,7 @@ const Projects = lazy(() => import('./components/Projects'));
 const Certificates = lazy(() => import('./components/Certificates'));
 const Experience = lazy(() => import('./components/Experience'));
 const Contact = lazy(() => import('./components/Contact'));
+const ChatBot = lazy(() => import('./components/ChatBot'));
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -55,6 +56,8 @@ function App() {
           <Experience />
           <Contact />
         </main>
+
+        <ChatBot />
       </Suspense>
 
       <footer className="w-full text-center py-12 border-t border-[var(--border-color)] text-[var(--text-secondary)] text-xs font-light">
