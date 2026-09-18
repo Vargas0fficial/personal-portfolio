@@ -120,7 +120,7 @@ const ChatBot = () => {
             <div className="px-5 py-4 border-b border-[var(--border-color)] flex items-center justify-between flex-shrink-0">
               <div>
                 <h3 className="text-sm font-semibold text-[var(--text-primary)]">Ask about Mark</h3>
-                <p className="text-xs text-[var(--text-secondary)] font-light">Mark's AI Assistant</p>
+                <p className="text-xs text-[var(--text-secondary)] font-light">AI assistant • powered by Gemini</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
@@ -133,59 +133,76 @@ const ChatBot = () => {
 
             {/* Messages */}
             <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
-              {messages.map((msg, idx) => (
-                <div key={idx} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div
-                    className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl text-sm font-light leading-relaxed whitespace-pre-line ${
-                      msg.sender === 'user' ? 'rounded-br-sm' : 'rounded-bl-sm premium-border'
-                    }`}
-                    style={
-                      msg.sender === 'user'
-                        ? { backgroundColor: 'var(--btn-primary-bg)', color: 'var(--btn-primary-text)' }
-                        : { backgroundColor: 'var(--bg-secondary)', color: 'var(--text-primary)' }
-                    }
+              <AnimatePresence initial={false}>
+                {messages.map((msg, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    {msg.text}
-                    {msg.showSocials && (
-                      <div className="flex items-center gap-4 pt-3 mt-2 border-t border-[var(--border-color)]">
-                        <a href="https://github.com/Vargas0fficial" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:opacity-70 transition-opacity"><FiGithub size={16} /></a>
-                        <a href="https://linkedin.com/in/worstcodervargas1" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:opacity-70 transition-opacity"><FiLinkedin size={16} /></a>
-                        <a href="https://facebook.com/worstCoder.Vargas" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-70 transition-opacity"><FiFacebook size={16} /></a>
-                        <a href={`mailto:${EMAIL}`} aria-label="Email" className="hover:opacity-70 transition-opacity"><FiMail size={16} /></a>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+                    <div
+                      className={`max-w-[85%] px-3.5 py-2.5 rounded-2xl text-sm font-light leading-relaxed whitespace-pre-line ${
+                        msg.sender === 'user' ? 'rounded-br-sm' : 'rounded-bl-sm premium-border'
+                      }`}
+                      style={
+                        msg.sender === 'user'
+                          ? { backgroundColor: 'var(--btn-primary-bg)', color: 'var(--btn-primary-text)' }
+                          : { backgroundColor: 'var(--bg-secondary)', color: 'var(--text-primary)' }
+                      }
+                    >
+                      {msg.text}
+                      {msg.showSocials && (
+                        <div className="flex items-center gap-4 pt-3 mt-2 border-t border-[var(--border-color)]">
+                          <a href="https://github.com/Vargas0fficial" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:opacity-70 transition-opacity"><FiGithub size={16} /></a>
+                          <a href="https://linkedin.com/in/worstcodervargas1" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:opacity-70 transition-opacity"><FiLinkedin size={16} /></a>
+                          <a href="https://facebook.com/worstCoder.Vargas" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-70 transition-opacity"><FiFacebook size={16} /></a>
+                          <a href={`mailto:${EMAIL}`} aria-label="Email" className="hover:opacity-70 transition-opacity"><FiMail size={16} /></a>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
 
-              {isTyping && (
-                <div className="flex justify-start">
-                  <div className="px-3.5 py-2.5 rounded-2xl rounded-bl-sm premium-border flex items-center gap-1" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-                    {[0, 0.15, 0.3].map((delay) => (
-                      <motion.span
-                        key={delay}
-                        className="w-1.5 h-1.5 rounded-full"
-                        style={{ backgroundColor: 'var(--text-secondary)' }}
-                        animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{ duration: 1, repeat: Infinity, delay }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              )}
+                {isTyping && (
+                  <motion.div
+                    key="typing-indicator"
+                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex justify-start"
+                  >
+                    <div className="px-3.5 py-2.5 rounded-2xl rounded-bl-sm premium-border flex items-center gap-1" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+                      {[0, 0.15, 0.3].map((delay) => (
+                        <motion.span
+                          key={delay}
+                          className="w-1.5 h-1.5 rounded-full"
+                          style={{ backgroundColor: 'var(--text-secondary)' }}
+                          animate={{ opacity: [0.3, 1, 0.3] }}
+                          transition={{ duration: 1, repeat: Infinity, delay }}
+                        />
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Quick replies */}
             <div className="px-4 pb-2 flex flex-wrap gap-2 flex-shrink-0">
               {quickReplies.map((q) => (
-                <button
+                <motion.button
                   key={q.label}
                   onClick={() => handleSend(q.text)}
                   disabled={isTyping}
-                  className="stack-badge whitespace-nowrap hover:opacity-70 transition-opacity cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.94 }}
+                  className="stack-badge whitespace-nowrap transition-opacity cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   {q.label}
-                </button>
+                </motion.button>
               ))}
             </div>
 
@@ -197,23 +214,27 @@ const ChatBot = () => {
               }}
               className="px-4 py-3 border-t border-[var(--border-color)] flex items-center gap-2 flex-shrink-0"
             >
-              <input
+              <motion.input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a question..."
                 disabled={isTyping}
+                whileFocus={{ scale: 1.01 }}
+                transition={{ duration: 0.15 }}
                 className="flex-1 text-sm bg-transparent outline-none text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] font-light disabled:opacity-50"
               />
-              <button
+              <motion.button
                 type="submit"
                 aria-label="Send message"
                 disabled={isTyping}
-                className="p-2 rounded-lg hover:opacity-80 transition-opacity flex-shrink-0 disabled:opacity-50"
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.85, rotate: -15 }}
+                className="p-2 rounded-lg transition-opacity flex-shrink-0 disabled:opacity-50"
                 style={{ backgroundColor: 'var(--btn-primary-bg)', color: 'var(--btn-primary-text)' }}
               >
                 <FiSend size={14} />
-              </button>
+              </motion.button>
             </form>
           </motion.div>
         )}
