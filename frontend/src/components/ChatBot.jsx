@@ -51,6 +51,30 @@ const ChatBot = () => {
     }
   }, [messages, isOpen, isTyping]);
 
+  // Lock background page scroll while the chat window is open (prevents
+  // scroll-through/bleed on mobile where scrolling the chat also scrolls the page).
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      const originalPosition = document.body.style.position;
+      const originalWidth = document.body.style.width;
+      const scrollY = window.scrollY;
+
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${scrollY}px`;
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        document.body.style.position = originalPosition;
+        document.body.style.width = originalWidth;
+        document.body.style.top = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isOpen]);
+
   const sendToAI = async (text, historyForApi) => {
     setIsTyping(true);
     try {
@@ -132,7 +156,7 @@ const ChatBot = () => {
             </div>
 
             {/* Messages */}
-            <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto overscroll-contain touch-pan-y px-4 py-4 space-y-3">
               <AnimatePresence initial={false}>
                 {messages.map((msg, idx) => (
                   <motion.div
