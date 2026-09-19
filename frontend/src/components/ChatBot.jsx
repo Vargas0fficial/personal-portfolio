@@ -144,7 +144,7 @@ const ChatBot = () => {
             <div className="px-5 py-4 border-b border-[var(--border-color)] flex items-center justify-between flex-shrink-0">
               <div>
                 <h3 className="text-sm font-semibold text-[var(--text-primary)]">Ask about Mark</h3>
-                <p className="text-xs text-[var(--text-secondary)] font-light">AI assistant • powered by Gemini</p>
+                <p className="text-xs text-[var(--text-secondary)] font-light">AI assistant</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
