@@ -246,7 +246,7 @@ const ChatBot = () => {
                 disabled={isTyping}
                 whileFocus={{ scale: 1.01 }}
                 transition={{ duration: 0.15 }}
-                className="flex-1 text-sm bg-transparent outline-none text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] font-light disabled:opacity-50"
+                className="flex-1 text-base bg-transparent outline-none text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] font-light disabled:opacity-50"
               />
               <motion.button
                 type="submit"
