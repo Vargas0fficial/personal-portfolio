@@ -43,7 +43,7 @@ const minimalistProjects = [
     title: 'Suzuki Management Appointment System',
     description:
       'A real-time digital appointment system for managing and scheduling appointments at the Suzuki dealership.',
-    link: 'https://szk-system.vercel.app',
+    link: 'https://szk-appt-system.vercel.app/',
     github: '#',
     image: '/screenshots/szk-pang.png',
     stacks: ['MongoDB', 'Express.js', 'React', 'Node.js'],
